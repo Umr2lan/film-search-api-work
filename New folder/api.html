@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Search here</h1>
+    <input type="text" id="in">
+    <button onclick="getapi();">Search</button>
+    <p id="Title"></p>
+    <p id="year"></p>
+    <p id="genre"></p>
+    <p id="director"></p>
+    <p id="actors"></p>
+    <p id="plot"></p>
+    <p id="ratings"></p>
+    <p><img src="" id="img" alt=""></p>
+
+    <script>
+        async function getapi(){
+            var x = document.getElementById("in").value;
+
+            var apiget = "http://www.omdbapi.com/?t=" + x + "&apikey=13ac669c"
+
+            var response = await fetch(apiget);
+
+            var data = await response.json();
+
+            document.getElementById("Title").innerHTML = "Title: " + data.Title;
+            document.getElementById("year").innerHTML = "Year: " + data.Year;
+            document.getElementById("genre").innerHTML = "Genre: " + data.Released;
+            document.getElementById("director").innerHTML = "Director: " + data.Director;
+            document.getElementById("actors").innerHTML = "Actors: " + data.Actors;
+            document.getElementById("plot").innerHTML = "Plot: " + data.Plot;
+            document.getElementById("ratings").innerHTML = "Ratings: " + data.Rated;
+            document.getElementById("img").src = data.Poster;
+        }
+    </script>
+</body>
+</html>
